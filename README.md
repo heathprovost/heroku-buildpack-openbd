@@ -108,7 +108,7 @@ This tells git to ignore the bulk of the OpenBD engine. It makes three exception
 * It includes web.xml in case you want to customize it.
 * It includes the entire customtags directory.
 
-This can be customized to your own needs. Any files you allow into revision control will be used by the buildpack, so you can provided customizations as needed. For example, if you wanted to run the administrator console on Heroku, just remove the line ommitting it from the .gitignore file. The only file you absolutely
+This can be customized to your own needs. Any files you allow into revision control will be used by the buildpack, your files always take precedence. For example, if you wanted to run the administrator console on Heroku, just remove the line ommitting it from the .gitignore file. The only file you absolutely
 must omit from revision control is WEB-INF/lib/OpenBlueDragon.jar. The omision of this file is what triggers
 thin deployment in the buildpack.
 
