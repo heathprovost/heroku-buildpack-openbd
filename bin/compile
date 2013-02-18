@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir>
+
+# fail fast
+set -e
+
+logger -p user.notice -t "slugc[$$]" "language_pack_java java_compile_start"
+
+BIN_DIR=$(cd $(dirname $0); pwd) # absolute path
+# parse args
+OPT_DIR=$BIN_DIR/../opt
+BUILD_DIR=$1
+CACHE_DIR=$2
+LOGGER_FLAGS=""
+
+if [[ -f ${BUILD_DIR}/WEB-INF/bluedragon/bluedragon.xml && -f ${BUILD_DIR}/WEB-INF/lib/OpenBlueDragon.jar ]]; then
+  # use developer supplied engine
+  echo "-----> Using Developer Supplied OpenBD Engine"
+else
+  # install OpenBD and overlay developer supplied files
+  echo -n "-----> Installing OpenBD 2.0.2..."
+  mkdir -p ${CACHE_DIR}/WEB-INF
+  mkdir -p ${CACHE_DIR}/bluedragon
+  if [ ! -f ${BUILD_DIR}/WEB-INF ]; then
+    mkdir -p ${BUILD_DIR}/WEB-INF
+    cp -r ${OPT_DIR}/WEB-INF/* ${BUILD_DIR}/WEB-INF
+  else
+    cp -r ${BUILD_DIR}/WEB-INF/* ${CACHE_DIR}/WEB-INF
+    rm -rf ${BUILD_DIR}/WEB-INF
+    mkdir -p ${BUILD_DIR}/WEB-INF
+    cp -r ${OPT_DIR}/WEB-INF/* ${BUILD_DIR}/WEB-INF
+    cp -r ${CACHE_DIR}/WEB-INF/* ${BUILD_DIR}/WEB-INF  
+  fi  
+  if [ ! -f ${BUILD_DIR}/bluedragon ]; then
+    mkdir -p ${BUILD_DIR}/bluedragon
+    cp -r ${OPT_DIR}/bluedragon/* ${BUILD_DIR}/bluedragon
+  else
+    cp -r ${BUILD_DIR}/bluedragon/* ${CACHE_DIR}/bluedragon
+    rm -rf ${BUILD_DIR}/bluedragon
+    mkdir -p ${BUILD_DIR}/bluedragon
+    cp -r ${OPT_DIR}/bluedragon/* ${BUILD_DIR}/bluedragon
+    cp -r ${CACHE_DIR}/bluedragon/* ${BUILD_DIR}/bluedragon  
+  fi
+  echo "done"
+fi
+
+# install Procfile
+if [ ! -f ${BUILD_DIR}/Procfile ]; then
+  echo -n "-----> Installing Default Procfile..."
+  cp ${OPT_DIR}/Procfile ${BUILD_DIR}/Procfile
+  echo "done"
+fi
+
+logger -p user.notice -t "slugc[$$]" "language_pack_java java_compile_end $LOGGER_FLAGS"

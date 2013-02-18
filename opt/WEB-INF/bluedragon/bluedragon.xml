@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server>
+  <system>
+    <resourcepath>/WEB-INF/resources</resourcepath>
+    <licensekey></licensekey>
+    <component-cfc>/WEB-INF/bluedragon/component.cfc</component-cfc>
+    <whitespacecomp>false</whitespacecomp>
+    <nativelibdir>/WEB-INF/bin</nativelibdir>
+    <missingtemplatehandler></missingtemplatehandler>
+    <errorhandler></errorhandler>
+    <buffersize>0</buffersize>
+    <tempdirectory>/WEB-INF/bluedragon/work/temp</tempdirectory>
+    <password>admin</password>
+    <defaultcharset>utf-8</defaultcharset>
+    <lastupdated>20/Aug/2011 13:10.05</lastupdated>
+    <legacyformvalidation>false</legacyformvalidation>
+    <strictarraypassbyreference>false</strictarraypassbyreference>
+  </system>
+  <file>
+    <maxfiles>1000</maxfiles>
+    <trustcache>false</trustcache>
+  </file>
+  <javacustomtags>
+    <classes>/WEB-INF/classes</classes>
+  </javacustomtags>
+  <nativecustomtags>
+  </nativecustomtags>
+  <fonts>
+    <dirs>C:\Windows\Fonts</dirs>
+  </fonts>
+  <cfquery>
+    <cache>true</cache>
+  </cfquery>
+  <cfapplication>
+    <clientstorage>cookie</clientstorage>
+    <enabled>true</enabled>
+    <sessiontimeout>#CreateTimeSpan(0,0,20,0)#</sessiontimeout>
+    <applicationtimeout>#CreateTimeSpan(2,0,0,0)#</applicationtimeout>
+    <j2eesession>false</j2eesession>
+  </cfapplication>
+  <cfmail>
+    <interval>240</interval>
+    <smtpserver>127.0.0.1</smtpserver>
+    <smtpport>25</smtpport>
+    <charset>UTF-8</charset>
+  </cfmail>
+  <cfmlcustomtags>
+    <mapping name="cf">
+      <directory>/WEB-INF/customtags</directory>
+      <name>cf</name>
+    </mapping>
+  </cfmlcustomtags>
+</server>
