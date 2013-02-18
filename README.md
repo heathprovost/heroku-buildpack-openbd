@@ -86,7 +86,7 @@ The buildpack supplies it's own Prcifle, but if you prefer to use your own [Proc
 You can optionally choose to use a thin deployment model. With the thin deployment model, the OpenBD
 engine is provided by the buildpack. The buildpack includes a full install of OpenBD 2.0.2 stable, minus the administration console, and will install and use it for all thin deployments.
 
-If you want to use the thin deployment model, you must remove the bulk of the OpenBD engine from revision control. You could do this by simply deleting all of the engine files - you can in fact deploy nothing by an index.cfm file and it will work. However, this gives you no way to do local testing. Instead, what you can do is use a .gitignore file in the root of your site to ommit the egine from revision control. An example is provided below:
+If you want to use the thin deployment model, you must remove the bulk of the OpenBD engine from revision control. You could do this by simply deleting all of the engine files - you can in fact deploy nothing but an index.cfm file and it will work. However, this gives you no way to do local testing. Instead, what you can do is use a .gitignore file in the root of your site to ommit the egine from revision control. An example is provided below:
 
     bluedragon/adminapi
     bluedragon/administrator
