@@ -19,6 +19,7 @@ if [[ -f ${BUILD_DIR}/WEB-INF/bluedragon/bluedragon.xml && -f ${BUILD_DIR}/WEB-I
   if [ ! -f ${BUILD_DIR}/WEB-INF/lib/jetty-runner.jar ]; then
     cp ${OPT_DIR}/WEB-INF/lib/jetty-runner.jar ${BUILD_DIR}/WEB-INF/lib
   fi
+  echo "done"
 else
   # install OpenBD and overlay developer supplied files
   echo -n "-----> Installing OpenBD 2.0.2..."
