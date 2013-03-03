@@ -44,7 +44,7 @@ If you have not put your app into git yet, you would do this:
 
 Now your Heroku application is ready to be created:
 
-    $ heroku create --stack cedar --buildpack http://github.com/heathprovost/heroku-buildpack-openbd.git your-app-name
+    $ heroku create your-app-name --buildpack http://github.com/heathprovost/heroku-buildpack-openbd.git
     Creating your-app-name... done, stack is cedar
     BUILDPACK_URL=http://github.com/heathprovost/heroku-buildpack-openbd.git
     http://your-app-name.herokuapp.com/ | git@heroku.com:your-app-name.git
