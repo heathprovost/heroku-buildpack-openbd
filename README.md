@@ -45,7 +45,7 @@ Add the gitignore file
 
     $ sudo wget https://raw.github.com/mhenke/heroku-buildpack-openbd/master/example_gitignore/.gitignore
 
-Initialize git, add folders and commit
+Initialize git, add folders, and commit
 
     $ git init
     $ git add .
