@@ -23,6 +23,42 @@ Git
 You **must** use git for revision control in order to deploy to Heroku. The easiest way to do this is to grab
 the [Heroku Toolbelt](https://toolbelt.heroku.com/). If you are new to git, start [here](https://devcenter.heroku.com/articles/git).
 
+Quick Start
+-----
+
+Don't want to read, here is a quick start section.
+
+Get jetty openbd and unzip into jetty-openbd folder
+
+    $ sudo wget -qO- -O tmp.zip http://openbd.org/download/3.0/jetty-openbd.zip && unzip -qd jetty-openbd tmp.zip && rm -f tmp.zip
+
+You can run the server then point your browser at http://127.0.0.1:8080/
+
+    $ cd jetty-openbd
+    $ java -jar start.jar
+
+Navigate into the web root of jetty openbd
+
+    $ cd webapps/openbd/
+
+Add the gitignore folder
+
+    $ sudo wget https://raw.github.com/mhenke/heroku-buildpack-openbd/master/example_gitignore/.gitignore
+
+Initialize git, add folders and commit
+
+    $ git init
+    $ git add .
+    $ git commit -m "1st commit"
+
+Deploy to heroku
+
+    $ heroku create your-app-name --buildpack http://github.com/heathprovost/heroku-buildpack-openbd.git
+    
+See your app
+
+    $ heroku open
+
 Basic Usage
 -----
 
