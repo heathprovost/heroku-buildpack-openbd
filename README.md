@@ -17,11 +17,59 @@ This buildpack is targeted for developers wanting to run OpenBD on Heroku withou
 are deployed on J2EE servers using .war files. While Heroku does support [war deployment](https://devcenter.heroku.com/articles/war-deployment), it does not currently work for OpenBD applications. This buildpack is for developers who would prefer to use Heroku's native git deployment model, which allows for fast and efficient
 deployment and small slug sizes.
 
-Git
+Quick Start
 -----
 
-You **must** use git for revision control in order to deploy to Heroku. The easiest way to do this is to grab
-the [Heroku Toolbelt](https://toolbelt.heroku.com/). If you are new to git, start [here](https://devcenter.heroku.com/articles/git).
+Don't want to read, here is a quick start section.
+
+Get jetty openbd and unzip into jetty-openbd folder
+
+    $ sudo wget -qO- -O tmp.zip http://openbd.org/download/3.0/jetty-openbd.zip && unzip -qd jetty-openbd tmp.zip && rm -f tmp.zip
+
+You can run the server then point your browser at http://127.0.0.1:8080/
+
+    $ cd jetty-openbd
+    $ java -jar start.jar
+
+Navigate into the web root of jetty openbd
+
+    $ cd webapps/openbd/
+
+Add the gitignore file
+
+    $ sudo wget https://raw.github.com/mhenke/heroku-buildpack-openbd/master/example_gitignore/.gitignore
+
+Initialize git, add folders, and commit
+
+    $ git init
+    $ git add .
+    $ git commit -m "1st commit"
+
+Create your app on heroku
+
+    $ heroku create your-app-name --buildpack http://github.com/heathprovost/heroku-buildpack-openbd.git
+    Creating your-app-name... done, stack is cedar
+    BUILDPACK_URL=http://github.com/heathprovost/heroku-buildpack-openbd.git
+    http://your-app-name.herokuapp.com/ | git@heroku.com:your-app-name.git
+    Git remote heroku added
+    
+Deploy to heroku    
+
+    $ git push heroku master
+    ...
+    -----> Fetching custom git buildpack... done
+    -----> OpenBD app detected
+    -----> Using Developer Supplied OpenBD Engine...
+    -----> Installing Default Procfile...done
+    -----> Discovering process types
+           Procfile declares types -> web
+    -----> Compiled slug size: 39.1MB
+    -----> Launching... done, v14
+    http://your-app-name.herokuapp.com deployed to Heroku
+    
+See your app
+
+    $ heroku open
 
 Basic Usage
 -----
@@ -36,35 +84,7 @@ You probably want a minimal .gitignore file to keep transient files out of revis
     WEB-INF/bluedragon/work/
     WEB-INF/bluedragon/bluedragon.xml.bak.*  
 
-If you have not put your app into git yet, you would do this:
-
-    $ git init
-    $ git add .
-    $ git commit -m "1st commit"
-
-Now your Heroku application is ready to be created:
-
-    $ heroku create --stack cedar --buildpack http://github.com/heathprovost/heroku-buildpack-openbd.git your-app-name
-    Creating your-app-name... done, stack is cedar
-    BUILDPACK_URL=http://github.com/heathprovost/heroku-buildpack-openbd.git
-    http://your-app-name.herokuapp.com/ | git@heroku.com:your-app-name.git
-    Git remote heroku added
-
-All that is left to do is deploy it:    
-
-    $ git push heroku master
-    ...
-    -----> Fetching custom git buildpack... done
-    -----> OpenBD app detected
-    -----> Using Developer Supplied OpenBD Engine...
-    -----> Installing Default Procfile...done
-    -----> Discovering process types
-           Procfile declares types -> web
-    -----> Compiled slug size: 39.1MB
-    -----> Launching... done, v14
-    http://your-app-name.herokuapp.com deployed to Heroku
-
-That's it. Your application should now be running on Heroku. In the basic usage model, you are supplying the OpenBD engine, i.e. Heroku will run and deploy whatever version of OpenBD you are using locally. The buildpack tries to be liberal and will detect your app as OpenBD if it has any of the following files in it:
+In the basic usage model, you are supplying the OpenBD engine, i.e. Heroku will run and deploy whatever version of OpenBD you are using locally. The buildpack tries to be liberal and will detect your app as OpenBD if it has any of the following files in it:
 
 * index.cfm
 * Application.cfm
@@ -117,6 +137,12 @@ During deployment, any files you allow into revision control are overlayed over 
 Note: It is **highly** recommended that if you choose to use thin deployments you use the same version of OpenBD
 for development (i.e. 2.0.2). If you want to run a different version or need to use the nightlies, you are better
 off for now using the full deployment model (i.e. include everything).
+
+Git
+-----
+
+You **must** use git for revision control in order to deploy to Heroku. The easiest way to do this is to grab
+the [Heroku Toolbelt](https://toolbelt.heroku.com/). If you are new to git, start [here](https://devcenter.heroku.com/articles/git).
 
 License
 -------
