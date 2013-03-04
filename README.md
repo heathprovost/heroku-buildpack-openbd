@@ -41,7 +41,7 @@ Navigate into the web root of jetty openbd
 
     $ cd webapps/openbd/
 
-Add the gitignore folder
+Add the gitignore file
 
     $ sudo wget https://raw.github.com/mhenke/heroku-buildpack-openbd/master/example_gitignore/.gitignore
 
