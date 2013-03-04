@@ -51,9 +51,27 @@ Initialize git, add folders and commit
     $ git add .
     $ git commit -m "1st commit"
 
-Deploy to heroku
+Create your app on heroku
 
     $ heroku create your-app-name --buildpack http://github.com/heathprovost/heroku-buildpack-openbd.git
+    Creating your-app-name... done, stack is cedar
+    BUILDPACK_URL=http://github.com/heathprovost/heroku-buildpack-openbd.git
+    http://your-app-name.herokuapp.com/ | git@heroku.com:your-app-name.git
+    Git remote heroku added
+    
+Deploy to heroku    
+
+    $ git push heroku master
+    ...
+    -----> Fetching custom git buildpack... done
+    -----> OpenBD app detected
+    -----> Using Developer Supplied OpenBD Engine...
+    -----> Installing Default Procfile...done
+    -----> Discovering process types
+           Procfile declares types -> web
+    -----> Compiled slug size: 39.1MB
+    -----> Launching... done, v14
+    http://your-app-name.herokuapp.com deployed to Heroku
     
 See your app
 
@@ -72,35 +90,7 @@ You probably want a minimal .gitignore file to keep transient files out of revis
     WEB-INF/bluedragon/work/
     WEB-INF/bluedragon/bluedragon.xml.bak.*  
 
-If you have not put your app into git yet, you would do this:
-
-    $ git init
-    $ git add .
-    $ git commit -m "1st commit"
-
-Now your Heroku application is ready to be created:
-
-    $ heroku create your-app-name --buildpack http://github.com/heathprovost/heroku-buildpack-openbd.git
-    Creating your-app-name... done, stack is cedar
-    BUILDPACK_URL=http://github.com/heathprovost/heroku-buildpack-openbd.git
-    http://your-app-name.herokuapp.com/ | git@heroku.com:your-app-name.git
-    Git remote heroku added
-
-All that is left to do is deploy it:    
-
-    $ git push heroku master
-    ...
-    -----> Fetching custom git buildpack... done
-    -----> OpenBD app detected
-    -----> Using Developer Supplied OpenBD Engine...
-    -----> Installing Default Procfile...done
-    -----> Discovering process types
-           Procfile declares types -> web
-    -----> Compiled slug size: 39.1MB
-    -----> Launching... done, v14
-    http://your-app-name.herokuapp.com deployed to Heroku
-
-That's it. Your application should now be running on Heroku. In the basic usage model, you are supplying the OpenBD engine, i.e. Heroku will run and deploy whatever version of OpenBD you are using locally. The buildpack tries to be liberal and will detect your app as OpenBD if it has any of the following files in it:
+In the basic usage model, you are supplying the OpenBD engine, i.e. Heroku will run and deploy whatever version of OpenBD you are using locally. The buildpack tries to be liberal and will detect your app as OpenBD if it has any of the following files in it:
 
 * index.cfm
 * Application.cfm
