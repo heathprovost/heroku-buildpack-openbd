@@ -17,12 +17,6 @@ This buildpack is targeted for developers wanting to run OpenBD on Heroku withou
 are deployed on J2EE servers using .war files. While Heroku does support [war deployment](https://devcenter.heroku.com/articles/war-deployment), it does not currently work for OpenBD applications. This buildpack is for developers who would prefer to use Heroku's native git deployment model, which allows for fast and efficient
 deployment and small slug sizes.
 
-Git
------
-
-You **must** use git for revision control in order to deploy to Heroku. The easiest way to do this is to grab
-the [Heroku Toolbelt](https://toolbelt.heroku.com/). If you are new to git, start [here](https://devcenter.heroku.com/articles/git).
-
 Quick Start
 -----
 
@@ -143,6 +137,12 @@ During deployment, any files you allow into revision control are overlayed over 
 Note: It is **highly** recommended that if you choose to use thin deployments you use the same version of OpenBD
 for development (i.e. 2.0.2). If you want to run a different version or need to use the nightlies, you are better
 off for now using the full deployment model (i.e. include everything).
+
+Git
+-----
+
+You **must** use git for revision control in order to deploy to Heroku. The easiest way to do this is to grab
+the [Heroku Toolbelt](https://toolbelt.heroku.com/). If you are new to git, start [here](https://devcenter.heroku.com/articles/git).
 
 License
 -------
